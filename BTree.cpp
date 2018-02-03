@@ -14,16 +14,16 @@
 #include "BTree.h"
 
 BTree::BTree() {
-    //root = nullptr;
+    root = nullptr;
 }
 
-BTree::BTree(node* orig) {
-    //this->copyhelper(orig);
+BTree::BTree(const BTree &orig) {
+    this->copyhelper(orig.root);
 }
 
 node* BTree::copyhelper(node* t) {// returns a pointer to an exact copy of t
-    if (t == NULL)
-        return NULL;
+    if (t == nullptr)
+        return nullptr;
     node *l, *r, *n;
     l = copyhelper(t->left); // copy left subtree
     r = copyhelper(t->right); // copy right subtree
@@ -33,9 +33,28 @@ node* BTree::copyhelper(node* t) {// returns a pointer to an exact copy of t
     n->right = r; // let left subtree become r
     return n;
 }
+/*
+BTree::~BTree() {
+    destroyhelper(root);
+}*/
 
-bool BTree::empty(node* root) {
-    if (root == nullptr) {
+void BTree::destroyhelper(node* t) {
+    if (t->left == nullptr && t->right == nullptr) {
+        delete t;
+        return;
+    }
+    if (t->left == nullptr) {
+        destroyhelper(t->right);
+    } else if (t->right == nullptr) {
+        destroyhelper(t->left);
+    } else {
+        destroyhelper(t->left);
+    }
+
+}
+
+bool BTree::empty(node* Node) {
+    if (Node == nullptr) {
         return true;
     }
     return false;
@@ -53,21 +72,21 @@ string BTree::value(node* b) {
     return b->data;
 }
 
-void BTree::print(node* root) {
+void BTree::print(node* Node) {
     static int zahl = 0;
-    if (root == nullptr) {
+    if (Node == nullptr) {
         return;
     }
-    print(root->left);
-    cout << " | " << root->data;
+    print(Node->left);
+    cout << " | " << Node->data;
     cout << " " << zahl << endl;
     zahl++;
-    print(root->right);
+    print(Node->right);
 }
 
 node* BTree::create() {
-    node* root = nullptr;
-    return root;
+    node* Node = nullptr;
+    return Node;
 }
 
 node* BTree::newnode(node* b1, string t, node* b2) {
@@ -76,6 +95,23 @@ node* BTree::newnode(node* b1, string t, node* b2) {
     root->left = b1;
     root->right = b2;
     return root;
+}
+
+void BTree::insert(string t) {
+    root = insert(root, t);
+}
+
+node* BTree::insert(node* Node, string t) {
+    if (Node == nullptr) {
+        Node = new node;
+        Node->data = t;
+        Node->left = Node->right = nullptr;
+    } else if (Node->data >= t) {           //Vergleicht Strings nach Alphabet und Groß und Klein Schreibung
+        Node->left = insert(Node->left, t);
+    } else if (Node->data < t) {            //Vergleicht Strings nach Alphabet und Groß und Klein Schreibung
+        Node->right = insert(Node->right, t);
+    }
+    return Node;
 }
 
 

@@ -13,8 +13,10 @@
 
 #ifndef BTREE_H
 #define BTREE_H
+#include <cstdlib>
 #include <iostream>
 #include <string>
+#include <algorithm>
 using namespace std;
 
 struct node {
@@ -26,10 +28,11 @@ struct node {
 class BTree {
 public:
     BTree();
-    BTree(node* orig);
+    BTree(const BTree &orig);
     node* copyhelper(node* t);
-    virtual ~BTree();
-    
+    //virtual ~BTree();
+    void destroyhelper(node* t);
+
     bool empty(node* root);
     node* leftTree(node* b);
     node* rightTree(node* b);
@@ -37,18 +40,25 @@ public:
     void print(node* root);
     node* create();
     node* newnode(node* b1, string t, node* b2);
-    
+    void insert(string t);
+    node* insert(node* root, string t);
 
     void main() {
-        node *root;
+        /*node *root;
         root = newnode(newnode(create(), "Peter", newnode(create(), "Altenbernd", create())), "faehrt", newnode(create(), "nach", newnode(create(), "Darmstadt", create())));
         cout << empty(root->right) << endl;
         cout << value(root->left) << endl;
+        print(root);*/
         print(root);
-
+        insert("Peter");
+        insert("Altenberg");
+        insert("faehrt");
+        insert("nach");
+        insert("Darmstadt");
+        print(root);
     };
 private:
-    //node* root;
+    node* root;
 };
 
 #endif /* BTREE_H */

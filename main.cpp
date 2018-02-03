@@ -24,6 +24,8 @@ int main(int argc, char** argv) {
 
     BTree B;
     B.main();
+    
+    BTree C = BTree(B);
     return 0;
 }
 

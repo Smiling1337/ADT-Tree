@@ -73,14 +73,12 @@ string BTree::value(node* b) {
 }
 
 void BTree::print(node* Node) {
-    static int zahl = 0;
     if (Node == nullptr) {
         return;
     }
     print(Node->left);
     cout << " | " << Node->data;
-    cout << " " << zahl << endl;
-    zahl++;
+    cout << " " << Node->number << endl;
     print(Node->right);
 }
 
@@ -90,28 +88,13 @@ node* BTree::create() {
 }
 
 node* BTree::newnode(node* b1, string t, node* b2) {
+    static int zahl = 0;
     node* root = new node;
     root->data = t;
     root->left = b1;
     root->right = b2;
+    root->number = zahl;
+    zahl++;
     return root;
 }
-
-void BTree::insert(string t) {
-    root = insert(root, t);
-}
-
-node* BTree::insert(node* Node, string t) {
-    if (Node == nullptr) {
-        Node = new node;
-        Node->data = t;
-        Node->left = Node->right = nullptr;
-    } else if (Node->data >= t) {           //Vergleicht Strings nach Alphabet und Groß und Klein Schreibung
-        Node->left = insert(Node->left, t);
-    } else if (Node->data < t) {            //Vergleicht Strings nach Alphabet und Groß und Klein Schreibung
-        Node->right = insert(Node->right, t);
-    }
-    return Node;
-}
-
 

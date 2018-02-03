@@ -14,11 +14,15 @@
 #include <cstdlib>
 
 #include "BTree.h"
+#include "BST.h"
 
 using namespace std;
 
-/*
- * 
+/* PROBLEME:
+ * Print benötigt einen Input node -> in der Aufgabe steht nur print()
+ * Ich weiß nicht ob der Kopierkonstruktor wirklich funktioniert ^^"
+ * Destruktor bekomme ich nicht zum laufen -.-
+ * Aufgabe 3 habe ich den Insert schon sortieren lassen anstatt den print() sollte erlaubt sein ?:D
  */
 int main(int argc, char** argv) {
 
@@ -26,6 +30,9 @@ int main(int argc, char** argv) {
     B.main();
     
     BTree C = BTree(B);
+    
+    BST A;
+    A.main();
     return 0;
 }
 

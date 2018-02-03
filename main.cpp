@@ -22,6 +22,7 @@ using namespace std;
  * Print benötigt einen Input node -> in der Aufgabe steht nur print()
  * Ich weiß nicht ob der Kopierkonstruktor wirklich funktioniert ^^"
  * Destruktor bekomme ich nicht zum laufen -.-
+ * Stimmt eigentlich die Vererbung? o.o
  * Aufgabe 3 habe ich den Insert schon sortieren lassen anstatt den print() sollte erlaubt sein ?:D
  */
 int main(int argc, char** argv) {

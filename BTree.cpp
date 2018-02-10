@@ -18,7 +18,7 @@ BTree::BTree() {
 }
 
 BTree::BTree(const BTree &orig) {
-    this->copyhelper(orig.root);
+    root = copyhelper(orig.root);
 }
 
 node* BTree::copyhelper(node* t) {// returns a pointer to an exact copy of t
@@ -33,6 +33,7 @@ node* BTree::copyhelper(node* t) {// returns a pointer to an exact copy of t
     n->right = r; // let left subtree become r
     return n;
 }
+ 
 /*
 BTree::~BTree() {
     destroyhelper(root);
@@ -50,7 +51,6 @@ void BTree::destroyhelper(node* t) {
     } else {
         destroyhelper(t->left);
     }
-
 }
 
 bool BTree::empty(node* Node) {
@@ -96,5 +96,8 @@ node* BTree::newnode(node* b1, string t, node* b2) {
     root->number = zahl;
     zahl++;
     return root;
+}
+void BTree::print() {
+    print(root);
 }
 

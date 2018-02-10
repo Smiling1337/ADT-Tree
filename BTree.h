@@ -39,15 +39,16 @@ public:
     node* rightTree(node* b);
     string value(node* b);
     void print(node* root);
+    void print();
     node* create();
     node* newnode(node* b1, string t, node* b2);
 
     void main() {
-        node *root;
         root = newnode(newnode(create(), "Peter", newnode(create(), "Altenbernd", create())), "faehrt", newnode(create(), "nach", newnode(create(), "Darmstadt", create())));
         cout << empty(root->right) << endl;
         cout << value(root->left) << endl;
         print(root);
+        
     };
 private:
     node* root;

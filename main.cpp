@@ -18,16 +18,12 @@
 
 using namespace std;
 
-/* PROBLEME:
- * Destruktor bekomme ich nicht zum laufen -.-
- * Stimmt eigentlich die Vererbung? o.o
- * Aufgabe 3 habe ich den Insert schon sortieren lassen anstatt den print() sollte erlaubt sein ?:D
- */
 int main(int argc, char** argv) {
 
-    BTree B, C;
+    BTree B;
     B.main();
-    C = B;
+
+    BTree C(B);
     cout << "B KOPIE:" << endl;
     C.print();
     

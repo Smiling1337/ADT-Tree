@@ -29,27 +29,34 @@ node* BTree::copyhelper(node* t) {// returns a pointer to an exact copy of t
     r = copyhelper(t->right); // copy right subtree
     n = new node; // create new node
     n->data = t->data; // store info into the node
+    n->number = t->number; //store number into node
     n->left = l; // let left subtree become l
     n->right = r; // let left subtree become r
     return n;
 }
- 
-/*
+
 BTree::~BTree() {
     destroyhelper(root);
-}*/
+}
 
 void BTree::destroyhelper(node* t) {
+    if(t == nullptr){
+        return;
+    }
     if (t->left == nullptr && t->right == nullptr) {
         delete t;
         return;
     }
     if (t->left == nullptr) {
         destroyhelper(t->right);
+        delete t;
     } else if (t->right == nullptr) {
         destroyhelper(t->left);
+        delete t;
     } else {
+        destroyhelper(t->right);
         destroyhelper(t->left);
+        delete t;
     }
 }
 

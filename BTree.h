@@ -31,7 +31,7 @@ public:
     BTree();
     BTree(const BTree &orig);
     node* copyhelper(node* t);
-    //virtual ~BTree();
+    virtual ~BTree();
     void destroyhelper(node* t);
 
     bool empty(node* root);
@@ -50,7 +50,11 @@ public:
         print(root);
         
     };
-private:
+    node* getRoot() const {
+        return root;
+    }
+
+protected:
     node* root;
 };
 

@@ -19,13 +19,23 @@
 class BST : BTree {
 public:
     BST();
-    BST(const BST& orig);
+    //BST(const BST& orig);
     //virtual ~BST();
 
     void insert(string t);
     node* insert(node* root, string t);
-    void ausgabe();
     
+    bool search(node* Node, string data);
+    
+    void inorder(node* root);
+    void preorder(node* root);
+    void postorder(node* root);
+
+    void ausgabeEbenen(node* root);
+    int height(node* node);
+    void printLevelOrder(node* Node);
+    void printGivenLevel(node* Node, int level);
+
     void main() {
         cout << endl << "BST::main()" << endl;
         insert("Peter");
@@ -33,13 +43,23 @@ public:
         insert("faehrt");
         insert("nach");
         insert("Darmstadt");
-        print(root);
-        ausgabe();
+        //print(root);
+        inorder(root);
+        cout << endl;
+        preorder(root);
+        cout << endl;
+        postorder(root);
+        cout << endl;
+        ausgabeEbenen(root);
+        cout << endl;
+        int levels = height(root);
+        printLevelOrder(root);
+        cout << search(root, "nach") << " " << search(root, "asd") << endl;
     }
 private:
-    node* root;
+    //node* root;
 };
 
 #endif /* BST_H */
 
-        
+
